@@ -35,3 +35,14 @@ func depth(s: Stack<Cell>) { s .. s.depth }
 // 2. Its optional arguments mess up our normal composition word.
 //    `.forEach(print)` has the same problems.
 func printStack<T>(s: Stack<T>) { print(s) }
+
+// MARK: - Fun/Test Words
+
+func fib(s: Stack<Cell>) {
+    s .. 0 .. 1 .. rot
+    guard case .i(var i) = s.pop() else { fatalError("Wrong type: expected Int") }
+    for ; i != 0; i-- {
+        s .. over .. ((+) as (Int, Int) -> Int) .. swap
+    }
+    s .. drop
+}

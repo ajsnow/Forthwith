@@ -29,6 +29,10 @@ typealias Word = (Stack<Cell>)->()
 /// Apply `word` on `s`.
 func ..<T>(s: Stack<T>, word: (Stack<T>)->()) -> Stack<T> { word(s); return s }
 
+/// Apply `word` on `s`. This non-generic version is needed to 
+/// help the compiler disambiguate between the two generic applies.
+func ..(s: Stack<Cell>, word: (Stack<Cell>)->()) -> Stack<Cell> { word(s); return s }
+
 /// Push a `cell` onto `s`.
 func ..<T>(s: Stack<T>, cell: T) -> Stack<T> { s.push(cell); return s }
 
