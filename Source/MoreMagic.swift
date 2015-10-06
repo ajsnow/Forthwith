@@ -37,22 +37,22 @@ private func apply<A, B>(s: Stack<Cell>, fn: A -> B) -> (Stack<Cell>, B) {
 // MARK: - Apply-Function-on-Stacked-Items
 /// Apply `fn` upon the contents of `s`.
 func ..<A, B>(s: Stack<Cell>, fn: A -> B) -> Stack<Cell> {
-    let (s, result) = apply(s, fn: slurry(fn))
+    let (s, result) = apply(s, fn: rslurry(fn))
     return s .. result
 }
 
 func ..<A, B, C>(s: Stack<Cell>, fn: (A, B) -> C) -> Stack<Cell> {
-    let (s, result) = apply(s, fn: slurry(fn))
+    let (s, result) = apply(s, fn: rslurry(fn))
     return s .. result
 }
 
 func ..<A, B, C, D>(s: Stack<Cell>, fn: (A, B, C) -> D) -> Stack<Cell> {
-    let (s, result) = apply(s, fn: slurry(fn))
+    let (s, result) = apply(s, fn: rslurry(fn))
     return s .. result
 }
 
 func ..<A, B, C, D, E>(s: Stack<Cell>, fn: (A, B, C, D) -> E) -> Stack<Cell> {
-    let (s, result) = apply(s, fn: slurry(fn))
+    let (s, result) = apply(s, fn: rslurry(fn))
     return s .. result
 }
 

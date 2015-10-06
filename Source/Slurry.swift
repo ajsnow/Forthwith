@@ -7,10 +7,6 @@
 //
 
 /// Slurry - a singular curry of the first argument.
-///
-/// This hack is required for the Apply-on-Stacked-Items version
-/// of the Word-Composition-Operator, as a result of how function
-/// types & reflection work in Swift.
 func slurry<A, B>(fn: A -> B) -> A -> B {
     return fn
 }
@@ -25,6 +21,33 @@ func slurry<A, B, C, D>(fn: (A, B, C) -> D) -> A -> (B, C) -> D {
 
 func slurry<A, B, C, D, E>(fn: (A, B, C, D) -> E) -> A -> (B, C, D) -> E {
     return { a in { (b, c, d) in fn(a, b, c, d) } }
+}
+
+// etc.
+
+/// RSlurry - a right, singular curry of the last argument.
+///
+/// This hack is required for the Apply-on-Stacked-Items version
+/// of the Word-Composition-Operator, as a result of how function
+/// types & reflection work in Swift.
+func rslurry<A, Y>(fn: A -> Y) -> A -> Y {
+    return fn
+}
+
+func rslurry<A, X, Y>(fn: (A, X) -> Y) -> X -> A -> Y {
+    return { x in { a in fn(a, x) } }
+}
+
+func rslurry<A, B, X, Y>(fn: (A, B, X) -> Y) -> X -> (A, B) -> Y {
+    return { x in { (a, b) in fn(a, b, x) } }
+}
+
+func rslurry<A, B, C, X, Y>(fn: (A, B, C, X) -> Y) -> X -> (A, B, C) -> Y {
+    return { x in { (a, b, c) in fn(a, b, c, x) } }
+}
+
+func rslurry<A, B, C, D, X, Y>(fn: (A, B, C, D, X) -> Y) -> X -> (A, B, C, D) -> Y {
+    return { x in { (a, b, c, d) in fn(a, b, c, d, x) } }
 }
 
 // etc.
