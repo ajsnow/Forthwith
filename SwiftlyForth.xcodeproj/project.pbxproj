@@ -10,6 +10,7 @@
 		EB1FA0931BC441320092817E /* Magic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1FA0921BC441320092817E /* Magic.swift */; };
 		EB1FA0961BC442510092817E /* MoreMagic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1FA0941BC442510092817E /* MoreMagic.swift */; };
 		EB1FA0971BC442510092817E /* Slurry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1FA0951BC442510092817E /* Slurry.swift */; };
+		EB1FA0A21BC443780092817E /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1FA09D1BC443780092817E /* Words.swift */; };
 		EBD2AE5C1BC0DCE70092817E /* SwiftlyForth.h in Headers */ = {isa = PBXBuildFile; fileRef = EBD2AE5B1BC0DCE70092817E /* SwiftlyForth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EBD2AE631BC0DCE80092817E /* SwiftlyForth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBD2AE581BC0DCE70092817E /* SwiftlyForth.framework */; };
 		EBD2AE681BC0DCE80092817E /* SwiftlyForthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD2AE671BC0DCE80092817E /* SwiftlyForthTests.swift */; };
@@ -30,6 +31,7 @@
 		EB1FA0921BC441320092817E /* Magic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Magic.swift; sourceTree = "<group>"; };
 		EB1FA0941BC442510092817E /* MoreMagic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreMagic.swift; sourceTree = "<group>"; };
 		EB1FA0951BC442510092817E /* Slurry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slurry.swift; sourceTree = "<group>"; };
+		EB1FA09D1BC443780092817E /* Words.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 		EBD2AE581BC0DCE70092817E /* SwiftlyForth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftlyForth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD2AE5B1BC0DCE70092817E /* SwiftlyForth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftlyForth.h; sourceTree = "<group>"; };
 		EBD2AE5D1BC0DCE70092817E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				EB1FA0941BC442510092817E /* MoreMagic.swift */,
 				EB1FA0951BC442510092817E /* Slurry.swift */,
 				EBD2AE721BC0DD2C0092817E /* Stack.swift */,
+				EB1FA09D1BC443780092817E /* Words.swift */,
 				EB1FA0981BC442690092817E /* Support */,
 			);
 			path = SwiftlyForth;
@@ -213,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB1FA0A21BC443780092817E /* Words.swift in Sources */,
 				EB1FA0971BC442510092817E /* Slurry.swift in Sources */,
 				EBD2AE731BC0DD2C0092817E /* Stack.swift in Sources */,
 				EB1FA0931BC441320092817E /* Magic.swift in Sources */,
