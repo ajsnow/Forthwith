@@ -10,6 +10,7 @@
 		EBD2AE5C1BC0DCE70092817E /* SwiftlyForth.h in Headers */ = {isa = PBXBuildFile; fileRef = EBD2AE5B1BC0DCE70092817E /* SwiftlyForth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EBD2AE631BC0DCE80092817E /* SwiftlyForth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBD2AE581BC0DCE70092817E /* SwiftlyForth.framework */; };
 		EBD2AE681BC0DCE80092817E /* SwiftlyForthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD2AE671BC0DCE80092817E /* SwiftlyForthTests.swift */; };
+		EBD2AE731BC0DD2C0092817E /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD2AE721BC0DD2C0092817E /* Stack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		EBD2AE621BC0DCE80092817E /* SwiftlyForthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftlyForthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD2AE671BC0DCE80092817E /* SwiftlyForthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftlyForthTests.swift; sourceTree = "<group>"; };
 		EBD2AE691BC0DCE80092817E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBD2AE721BC0DD2C0092817E /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		EBD2AE5A1BC0DCE70092817E /* SwiftlyForth */ = {
 			isa = PBXGroup;
 			children = (
+				EBD2AE721BC0DD2C0092817E /* Stack.swift */,
 				EBD2AE5B1BC0DCE70092817E /* SwiftlyForth.h */,
 				EBD2AE5D1BC0DCE70092817E /* Info.plist */,
 			);
@@ -193,6 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBD2AE731BC0DD2C0092817E /* Stack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +308,7 @@
 		EBD2AE6D1BC0DCE80092817E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -316,12 +321,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = su.snw.SwiftlyForth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		EBD2AE6E1BC0DCE80092817E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -378,6 +385,7 @@
 				EBD2AE6E1BC0DCE80092817E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EBD2AE6F1BC0DCE80092817E /* Build configuration list for PBXNativeTarget "SwiftlyForthTests" */ = {
 			isa = XCConfigurationList;
@@ -386,6 +394,7 @@
 				EBD2AE711BC0DCE80092817E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
