@@ -1,6 +1,6 @@
 //
 //  Words.swift
-//  SwiftlyForth
+//  Forthwith
 //
 //  Created by Andrew Snow on 10/6/15.
 //  Copyright © 2015 Andrew Snow. All rights reserved.

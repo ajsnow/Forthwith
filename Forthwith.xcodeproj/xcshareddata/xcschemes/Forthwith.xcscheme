@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EBD2AE571BC0DCE70092817E"
-               BuildableName = "SwiftlyForth.framework"
-               BlueprintName = "SwiftlyForth"
-               ReferencedContainer = "container:SwiftlyForth.xcodeproj">
+               BuildableName = "Forthwith.framework"
+               BlueprintName = "Forthwith"
+               ReferencedContainer = "container:Forthwith.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EBD2AE611BC0DCE80092817E"
-               BuildableName = "SwiftlyForthTests.xctest"
-               BlueprintName = "SwiftlyForthTests"
-               ReferencedContainer = "container:SwiftlyForth.xcodeproj">
+               BuildableName = "ForthwithTests.xctest"
+               BlueprintName = "ForthwithTests"
+               ReferencedContainer = "container:Forthwith.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EBD2AE571BC0DCE70092817E"
-            BuildableName = "SwiftlyForth.framework"
-            BlueprintName = "SwiftlyForth"
-            ReferencedContainer = "container:SwiftlyForth.xcodeproj">
+            BuildableName = "Forthwith.framework"
+            BlueprintName = "Forthwith"
+            ReferencedContainer = "container:Forthwith.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EBD2AE571BC0DCE70092817E"
-            BuildableName = "SwiftlyForth.framework"
-            BlueprintName = "SwiftlyForth"
-            ReferencedContainer = "container:SwiftlyForth.xcodeproj">
+            BuildableName = "Forthwith.framework"
+            BlueprintName = "Forthwith"
+            ReferencedContainer = "container:Forthwith.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -83,9 +83,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EBD2AE571BC0DCE70092817E"
-            BuildableName = "SwiftlyForth.framework"
-            BlueprintName = "SwiftlyForth"
-            ReferencedContainer = "container:SwiftlyForth.xcodeproj">
+            BuildableName = "Forthwith.framework"
+            BlueprintName = "Forthwith"
+            ReferencedContainer = "container:Forthwith.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:SwiftlyForth.xcodeproj">
+      location = "self:/Users/snw/Desktop/SwiftlyForth/Forthwith.xcodeproj">
    </FileRef>
 </Workspace>
