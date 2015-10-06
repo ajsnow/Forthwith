@@ -36,6 +36,8 @@ class SwiftlyForthTests: XCTestCase {
         p.push(Cell(item: doubler))
         p .. printStack
         p .. 0.1 .. 0.2 .. 0.3 .. fma as ((Double, Double, Double) -> Double) .. printStack
+        
+        p .. 0 .. IF(drop, ELSE: dup) .. printStack
     }
     
 }

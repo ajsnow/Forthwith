@@ -6,7 +6,7 @@
 //  Copyright © 2015 Andrew Snow. All rights reserved.
 //
 
-// MARK: - Stack Manipulation Words
+// MARK: - Stack Manipulation
 
 func drop<T>(s: Stack<T>) { s.drop() }
 
@@ -26,7 +26,35 @@ func nip<T>(s: Stack<T>) { s .. swap .. drop }
 
 func tuck<T>(s: Stack<T>) { s .. swap .. over }
 
-// MARK: - Debug Words
+// MARK: - Control Flow
+
+// We'd prefer the curried function to take an Int (or Bool) instead of the Stack,
+// (and therefore return a Word instead of null) but we haven't figured out a way
+// to signal that it should then execute the resulting function as a Word instead
+// of the 'MoreMagic' way, which fails since the next item on the stack isn't 
+// itself a stack.
+func IF(ifSide: Word, ELSE elseSide: Word)(s: Stack<Cell>) {
+    guard case .i(let i) = s.pop() else { fatalError("Type error: expected Int") }
+    
+    s .. (i != 0 ? ifSide : elseSide)
+}
+
+func WHILE(body: Word)(s: Stack<Cell>) {
+    while true {
+        // This ugliness is needed to differentiate type errors from FALSE
+        guard case .i(let i) = s.pop() else { fatalError("Type error: expected Int") }
+        guard i != 0 else { break }
+        s .. body
+    }
+}
+
+// MARK: - Words, Words, Words
+
+/// Tick encloses a function (or `Word`) in a `Cell` so that it can be pushed onto the `Stack`.
+/// N.B. we have not yet developed a way to execute functions once they're on the stack.
+func tick<A, B>(fn: A -> B) -> Cell { return Cell(item: fn) }
+
+// MARK: - Debug
 
 func depth(s: Stack<Cell>) { s .. s.depth }
 
@@ -36,13 +64,11 @@ func depth(s: Stack<Cell>) { s .. s.depth }
 //    `.forEach(print)` has the same problems.
 func printStack<T>(s: Stack<T>) { print(s) }
 
-// MARK: - Fun/Test Words
+// MARK: - Fun/Test
 
 func fib(s: Stack<Cell>) {
-    s .. 0 .. 1 .. rot
-    guard case .i(var i) = s.pop() else { fatalError("Wrong type: expected Int") }
-    for ; i != 0; i-- {
-        s .. over .. ((+) as (Int, Int) -> Int) .. swap
+    s .. 0 .. 1 .. rot .. dup .. WHILE {
+        $0 .. rightRot .. over .. ((+) as (Int, Int) -> Int) .. swap .. rot .. 1 .. ((-) as (Int, Int) -> Int) .. dup
     }
-    s .. drop
+    s .. drop .. drop
 }
