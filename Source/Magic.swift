@@ -37,10 +37,7 @@ func ..(s: Stack<Cell>, word: (Stack<Cell>)->()) -> Stack<Cell> { word(s); retur
 func ..<T>(s: Stack<T>, cell: T) -> Stack<T> { s.push(cell); return s }
 
 /// Push an `item` (anything) onto `s`.
-func ..<T>(s: Stack<Cell>, item: T) -> Stack<Cell> {
-    s.push(Cell(item: item))
-    return s
-}
+func ..<T>(s: Stack<Cell>, item: T) -> Stack<Cell> { s.push(Cell(item: item)); return s }
 
 public enum Cell: CustomStringConvertible {
     

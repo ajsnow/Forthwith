@@ -34,16 +34,11 @@ func tuck<T>(s: Stack<T>) { s .. swap .. over }
 // of the 'MoreMagic' way, which fails since the next item on the stack isn't 
 // itself a stack.
 func IF(ifSide: Word, ELSE elseSide: Word)(s: Stack<Cell>) {
-    guard case .i(let i) = s.pop() else { fatalError("Type error: expected Int") }
-    
-    s .. (i != 0 ? ifSide : elseSide)
+    s .. (s.pop(Int) != 0 ? ifSide : elseSide)
 }
 
 func WHILE(body: Word)(s: Stack<Cell>) {
-    while true {
-        // This ugliness is needed to differentiate type errors from FALSE
-        guard case .i(let i) = s.pop() else { fatalError("Type error: expected Int") }
-        guard i != 0 else { break }
+    while s.pop(Int) != 0 {
         s .. body
     }
 }

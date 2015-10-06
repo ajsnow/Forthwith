@@ -7,7 +7,7 @@
 //
 
 /// A simple, infinite last-in first-out `Stack` of `T`.
-final class Stack<T>: CustomStringConvertible {
+final class Stack<T>: StackProto, CustomStringConvertible {
 
     private var storage: [T] = []
     
@@ -59,4 +59,59 @@ final class Stack<T>: CustomStringConvertible {
     // MARK: - CustomStringConvertible
     var description: String { return "T\(storage)H" }
     
+}
+
+// This exits so that we can extend Stack(Proto)<Cell> with Cell specific things.
+protocol StackProto {
+    
+    typealias Element
+    
+    /// The number of items on the stack.
+    var depth: Int { get }
+    
+    // Single-item functions
+    /// Add the `item` to the top of the stack.
+    func push(item: Element)
+    
+    /// Return the `item` on top of the stack.
+    /// Requires: depth > 0
+    func pop() -> Element
+    
+    /// Remove the `item` on top of the stack.
+    /// Requires: depth > 0
+    func drop()
+    
+    /// Remove the `item` on top of the stack without removal.
+    /// Requires: depth > 0
+    func peek() -> Element
+    
+    /// Remove all elements.
+    func removeAll()
+}
+
+extension StackProto where Element == Cell {
+    func pop<A>(type: A.Type) -> A {
+        switch pop() {
+        case .i(let arg):
+            if let arg = arg as? A {
+                return arg
+            } else {
+                fatalError("Type error: expecting \(A.self); recieved Int")
+            }
+            
+        case .ref(let arg):
+            if let arg = arg as? A {
+                return arg
+            } else if let arg = (arg as? BoxAny)?.value as? A {
+                return arg
+            } else {
+                if arg is BoxAny {
+                    fatalError("Type error: expecting \(A.self); recieved \((arg as! BoxAny).value)")
+                } else {
+                    fatalError("Type error: expecting \(A.self); recieved \(arg.dynamicType)")
+                }
+            }
+            
+        }
+    }
 }
