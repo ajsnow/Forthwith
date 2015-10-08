@@ -36,6 +36,21 @@ class ForthwithTests: XCTestCase {
         s .. printStack
     }
     
+    func testControlFlow() {
+        let t = Stack<Cell>()
+        // An alternative way of handling control flow is to punt it to the user...
+        t .. true .. { if $0 { print("WE REJECT THE NULL HYPOTHESIS!") } else { print("More study is needed.") } } as (Bool) -> ()
+
+        t .. true .. `if`({$0 .. true}, `else`: {$0 .. false})
+        t .. `while` {
+            $0 .. 0 .. 10 .. 0 .. false
+            print("This executes once.")
+            } .. loop {
+                $0 .. 1 .. ((+) as (Int, Int) -> Int) .. ddup .. dot
+        }
+        
+    }
+    
     func testBasics() {
         s .. 5 .. 4 .. ((+) as (Int, Int) -> Int) .. printStack
         let p = s .. 5
@@ -46,8 +61,6 @@ class ForthwithTests: XCTestCase {
         p.push(Cell(item: doubler))
         p .. printStack
         p .. 0.1 .. 0.2 .. 0.3 .. fma as ((Double, Double, Double) -> Double) .. printStack
-        
-        p .. 0 .. IF(drop, ELSE: dup) .. printStack
     }
     
 }

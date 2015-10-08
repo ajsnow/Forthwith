@@ -36,17 +36,50 @@ func tuck<T>(s: Stack<T>) { s .. swap .. over }
 // to signal that it should then execute the resulting function as a Word instead
 // of the 'MoreMagic' way, which fails since the next item on the stack isn't 
 // itself a stack.
-func IF(ifSide: Word, ELSE elseSide: Word)(s: Stack<Cell>) {
-    s .. (s.pop(Int) != 0 ? ifSide : elseSide)
+//
+// I think we could do soemthing more interesting still: we have if, else, then as
+// words and overload `..` to be right-associative with them and higher priority,
+// but that seems like too much work for now.
+
+/// If `if` then `then` else `else`. :)
+func `if`(then: Word, `else`: Word? = nil)(s: Stack<Cell>) {
+    if s.pop(Bool) {
+        s .. then
+    } else if let `else` = `else` {
+        s .. `else`
+    }
+    // Nil coalescing doesn't seem to work for optional closures,
+    // so my preferred way of writting this doesn't currently work:
+    // s .. (s.pop(Bool) ? then : `else` ?? { _ in } as Word)
 }
 
-func WHILE(body: Word)(s: Stack<Cell>) {
-    while s.pop(Int) != 0 {
-        s .. body
-    }
+/// While checks the top of the stack for a `Bool`, if true, it executes the body,
+/// and then checks the top again, if false, it jumps over the body. This is similar
+/// to Forth's `begin` ... `while` ... `repeat` but there is no seperate begin phase.
+/// Therefore the the programmer will generally first push a `true`, and add the Bool's
+/// setup/test/creation as the last part of the body.
+/// Any body ending in `.. true` loops forever.
+func `while`(body: Word)(s: Stack<Cell>) {
+    while s.pop(Bool) { s .. body }
+}
+
+/// Loop executes the `body` n times where n is the difference between the top two
+/// `Int`s on the `Stack`. It behaves much like the Forth word `do?`, except that
+/// it accepts its bounds in either order (i.e. it will never wrap around through
+/// Int.max / Int.min).
+func loop(body: Word)(s: Stack<Cell>) {
+    let i = s.pop(Int)
+    let bound = s.pop(Int)
+    // N.B. We don't care which is the "bound" or which direction we
+    // increment from since we aren't providing a counter back to the
+    // loop body.
+    let range = i < bound ? i..<bound : bound..<i
+    for _ in range { s .. body }
 }
 
 // MARK: - Words, Words, Words
+
+func dot<T>(s: Stack<T>) { print(s.pop()) }
 
 /// Tick encloses a function (or `Word`) in a `Cell` so that it can be pushed onto the `Stack`.
 /// N.B. we have not yet developed a way to execute functions once they're on the stack.
@@ -65,8 +98,8 @@ func printStack<T>(s: Stack<T>) { print(s) }
 // MARK: - Fun/Test
 
 func fib(s: Stack<Cell>) {
-    s .. 0 .. 1 .. rot .. dup .. WHILE {
-        $0 .. rightRot .. over .. ((+) as (Int, Int) -> Int) .. swap .. rot .. 1 .. ((-) as (Int, Int) -> Int) .. dup
+    s .. 0 .. 1 .. rot .. 0 .. loop {
+        $0 .. over .. ((+) as (Int, Int) -> Int) .. swap
     }
-    s .. drop .. drop
+    s .. drop
 }
