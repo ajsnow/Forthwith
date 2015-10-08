@@ -48,7 +48,6 @@ class ForthwithTests: XCTestCase {
             } .. loop {
                 $0 .. 1 .. ((+) as (Int, Int) -> Int) .. ddup .. dot
         }
-        
     }
     
     func testStars() {

@@ -70,10 +70,7 @@ func `while`(body: Word)(s: Stack<Cell>) {
 func loop(body: Word)(s: Stack<Cell>) {
     let i = s.pop(Int)
     let bound = s.pop(Int)
-    // N.B. We don't care which is the "bound" or which direction we
-    // increment from since we aren't providing a counter back to the
-    // loop body.
-    let range = i < bound ? i..<bound : bound..<i
+    let range = i.stride(to: bound, by: i < bound ? 1 : -1)
     for _ in range { s .. body }
 }
 
@@ -81,12 +78,7 @@ func loop(body: Word)(s: Stack<Cell>) {
 func loop(body: (Stack<Cell>, Int) -> ())(s: Stack<Cell>) {
     let i = s.pop(Int)
     let bound = s.pop(Int)
-    // N.B. We don't care which is the "bound" or which direction we
-    // increment from since we aren't providing a counter back to the
-    // loop body.
-    let range = i < bound
-        ? AnySequence(i..<bound)
-        : AnySequence((bound...i).reverse().dropLast())
+    let range = i.stride(to: bound, by: i < bound ? 1 : -1)
     for i in range { body(s, i) }
 }
 
