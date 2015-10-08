@@ -14,6 +14,9 @@ func dropAll<T>(s: Stack<T>) { s.removeAll() }
 
 func dup<T>(s: Stack<T>) { s .. s.peek() }
 
+// FIXME: Workaround: The compiler cannot figure out which `dup` to call when you push to the stack after it.
+func ddup<T>(s: Stack<T>) { s .. dup }
+
 func swap<T>(s: Stack<T>) { let (b, a) = (s.pop(), s.pop()); s .. b .. a }
 
 func over<T>(s: Stack<T>) { let (b, a) = (s.pop(), s.pop()); s .. a .. b .. a }

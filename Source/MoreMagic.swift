@@ -11,6 +11,12 @@
 // the metal switch body were the words ‘magic' and
 // ‘more magic'.
 
+// MARK: - Uncurry methods, and then Apply-Function-upon-Stacked-Items
+/// Uncurry `fn`, then call the needed operator below.
+func ..<A, B, C>(s: Stack<Cell>, fn: A -> B -> C) -> Stack<Cell> {
+    return s .. uncurry(fn)
+}
+
 // MARK: - Apply-Function-upon-Stacked-Items
 /// Apply `fn` upon the contents of `s`.
 func ..<A, B>(s: Stack<Cell>, fn: A -> B) -> Stack<Cell> {

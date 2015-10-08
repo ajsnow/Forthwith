@@ -9,7 +9,7 @@
 import XCTest
 @testable import Forthwith
 
-class SwiftlyForthTests: XCTestCase {
+class ForthwithTests: XCTestCase {
     
     let s = Stack<Cell>()
     
@@ -19,10 +19,20 @@ class SwiftlyForthTests: XCTestCase {
     }
     
     func testFibonacci() {
-        // Calculate the 40th fibonacci number.
-        let fib40 = 102_334_155
-        s .. 40
-        s .. fib
+        // Calculate the 92nd fibonacci number.
+        s .. 92 .. fib
+        let fib92 = 7540113804746346429
+        XCTAssert(s.pop(Int) == fib92)
+    }
+    
+    func testString() {
+        // Tests applying methods.
+        s .. "This is my super test string. It is really great, isn't it?"
+        s .. ddup .. "This"
+        s .. String.hasPrefix .. swap
+        s .. ddup .. "?" .. String.hasSuffix .. swap
+        s .. ddup .. "Shall not be found." .. String.containsString .. swap
+        s .. drop
         s .. printStack
     }
     

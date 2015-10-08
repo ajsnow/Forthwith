@@ -51,3 +51,13 @@ func rslurry<A, B, C, D, X, Y>(fn: (A, B, C, D, X) -> Y) -> X -> (A, B, C, D) ->
 }
 
 // etc.
+
+/// Uncurry - does what it says on the tin.
+///
+/// We need this to make methods work with our Apply-on-Stacked-Items
+/// Word-Composition-Operator. It turns a singly curried function,
+/// like methods called from their type name (e.g. String.hasPrefix),
+/// into uncurried versions of the same that we can then rslurry as needed.
+func uncurry<A, B, C>(fn: (A) -> (B) -> C) -> (A, B) -> C {
+    return { (a, b) in fn(a)(b) }
+}
