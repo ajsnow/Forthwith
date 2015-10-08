@@ -77,9 +77,25 @@ func loop(body: Word)(s: Stack<Cell>) {
     for _ in range { s .. body }
 }
 
+// A version of `loop` that exposes the index as %1.
+func loop(body: (Stack<Cell>, Int) -> ())(s: Stack<Cell>) {
+    let i = s.pop(Int)
+    let bound = s.pop(Int)
+    // N.B. We don't care which is the "bound" or which direction we
+    // increment from since we aren't providing a counter back to the
+    // loop body.
+    let range = i < bound
+        ? AnySequence(i..<bound)
+        : AnySequence((bound...i).reverse().dropLast())
+    for i in range { body(s, i) }
+}
+
 // MARK: - Words, Words, Words
 
 func dot<T>(s: Stack<T>) { print(s.pop()) }
+
+let cr: Word = { _ in print("") }
+let emit: Word = { print(UnicodeScalar($0.pop(Int)), terminator: "") }
 
 /// Tick encloses a function (or `Word`) in a `Cell` so that it can be pushed onto the `Stack`.
 /// N.B. we have not yet developed a way to execute functions once they're on the stack.
@@ -87,7 +103,9 @@ func tick<A, B>(fn: A -> B) -> Cell { return Cell(item: fn) }
 
 // MARK: - Debug
 
-func depth(s: Stack<Cell>) { s .. s.depth }
+/// While Stack<T> words must be defined with the usual function notation, `Word`
+/// i.e. Stack<Cell> -> () may be defined in a compact (& thus more Forth-ish) way.
+let depth: Word = { $0 .. $0.depth }
 
 // Needed for two reasons:
 // 1. The compiler special cases `print`, telling us it's not a keyword.
