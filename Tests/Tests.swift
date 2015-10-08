@@ -54,11 +54,19 @@ class ForthwithTests: XCTestCase {
     func testStars() {
         typealias       Word = (Stack<Cell>) -> () // Define it locally because of ambiguities with Swift.Word
         let star:       Word = { $0 .. 42 .. emit }
-        let stars:      Word = { $0 .. 0 .. loop(star) }
-        let square:     Word = { $0 .. ddup .. 0 .. loop { $0 .. ddup .. stars .. cr } .. drop }
-        let triangle:   Word = { $0 .. 1 .. ((+) as (Int, Int) -> Int) .. 1 .. loop { $0 .. $1 .. stars .. cr } }
-        let tower:      Word = { $0 .. ddup .. 1 .. ((-) as (Int, Int) -> Int) .. triangle .. square }
+        let stars:      Word = { $0 .. 0 .. loop(star) .. cr }
+        let square:     Word = { $0 .. ddup .. 0 .. loop { $0 .. ddup .. stars } .. drop }
+        let triangle:   Word = { $0 .. 1 .. loop { $0 .. $1 .. stars } }
+        let tower:      Word = { $0 .. ddup .. triangle .. square }
         s .. cr .. 6 .. tower
+        
+        // Compare with Forth:
+        // : STAR	            42 EMIT ;
+        // : STARS              0 DO STAR LOOP CR ;
+        // : SQUARE             DUP 0 DO DUP STARS LOOP DROP ;
+        // : TRIANGLE           1 DO I STARS LOOP ;
+        // : TOWER ( n -- )     DUP TRIANGLE SQUARE ;
+        // CR 6 TOWER
     }
     
     func testBasics() {
@@ -74,3 +82,5 @@ class ForthwithTests: XCTestCase {
     }
     
 }
+
+
