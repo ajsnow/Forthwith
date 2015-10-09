@@ -46,48 +46,8 @@ func ..(s: Stack<Cell>, word: Word) -> Stack<Cell> { return word(s) }
 func ..<T>(s: Stack<T>, cell: T) -> Stack<T> { s.push(cell); return s }
 
 /// Push an `item` (anything) onto `s`.
-func ..<T>(s: Stack<Cell>, item: T) -> Stack<Cell> { s.push(Cell(item: item)); return s }
+func ..<T>(s: Stack<Cell>, item: T) -> Stack<Cell> { s.push(item); return s }
 
 // MARK: - Helper Types
 
-public enum Cell: CustomStringConvertible {
-    
-    case i(Int)
-    case ref(AnyObject)
-    
-    init<T>(item: T) {
-        switch item {
-        case let item as Int:
-            self = .i(item)
-
-        case let item as AnyObject:
-            self = .ref(item)
-
-        default:
-            self = .ref(BoxAny(item))
-        }
-    }
-    
-    // MARK: - CustomStringConvertible
-    public var description: String {
-        switch self {
-        case .i(let i):
-            return String(i)
-        case .ref(let obj):
-            return String(obj)
-        }
-    }
-}
-
-public final class BoxAny: CustomStringConvertible {
-    
-    let value: Any
-    
-    init(_ item: Any) { self.value = item }
-    
-    // MARK: - CustomStringConvertible
-    public var description: String {
-        return "Box[\(value)]"
-    }
-    
-}
+typealias Cell = Any

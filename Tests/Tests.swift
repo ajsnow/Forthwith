@@ -75,7 +75,7 @@ class ForthwithTests: XCTestCase {
         func doubler(a: Double) -> Double { return 2*a }
         p .. 3.1415
         p .. printStack
-        p.push(Cell(item: doubler))
+        p.push(doubler)
         p .. printStack
         p .. 0.1 .. 0.2 .. 0.3 .. fma as ((Double, Double, Double) -> Double) .. printStack
     }

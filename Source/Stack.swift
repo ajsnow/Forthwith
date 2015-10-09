@@ -90,28 +90,11 @@ protocol StackProto {
 }
 
 extension StackProto where Element == Cell {
+    
     func pop<A>(type: A.Type) -> A {
-        switch pop() {
-        case .i(let arg):
-            if let arg = arg as? A {
-                return arg
-            } else {
-                fatalError("Type error: expecting \(A.self); recieved Int")
-            }
-            
-        case .ref(let arg):
-            if let arg = arg as? A {
-                return arg
-            } else if let arg = (arg as? BoxAny)?.value as? A {
-                return arg
-            } else {
-                if arg is BoxAny {
-                    fatalError("Type error: expecting \(A.self); recieved \((arg as! BoxAny).value)")
-                } else {
-                    fatalError("Type error: expecting \(A.self); recieved \(arg.dynamicType)")
-                }
-            }
-            
-        }
+        let anyValue = pop()
+        guard let value = anyValue as? A else { fatalError("Type error: expecting \(A.self); recieved \(anyValue.dynamicType)") }
+        return value
     }
+    
 }

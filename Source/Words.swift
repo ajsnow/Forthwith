@@ -94,7 +94,7 @@ let emit: Word = { print(UnicodeScalar($0.pop(Int)), terminator: ""); return $0 
 
 /// Tick encloses a function (or `Word`) in a `Cell` so that it can be pushed onto the `Stack`.
 /// N.B. we have not yet developed a way to execute functions once they're on the stack.
-func tick<A, B>(fn: A -> B) -> Cell { return Cell(item: fn) }
+func tick<A, B>(fn: A -> B)(s: Stack<Cell>) -> Stack<Cell> { s.push(fn); return s }
 
 // MARK: - Debug
 
