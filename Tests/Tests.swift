@@ -43,8 +43,8 @@ class ForthwithTests: XCTestCase {
 
         t .. true .. `if`({$0 .. true}, `else`: {$0 .. false})
         t .. `while` {
-            $0 .. 0 .. 10 .. 0 .. false
             print("This executes once.")
+            return $0 .. 0 .. 10 .. 0 .. false
             } .. loop {
                 $0 .. 1 .. ((+) as (Int, Int) -> Int) .. ddup .. dot
         }
@@ -52,11 +52,11 @@ class ForthwithTests: XCTestCase {
     
     func testStars() {
         typealias       Word = (Stack<Cell>) -> () // Define it locally because of ambiguities with Swift.Word
-        let star:       Word = { $0 .. 42 .. emit }
-        let stars:      Word = { $0 .. 0 .. loop(star) .. cr }
-        let square:     Word = { $0 .. ddup .. 0 .. loop { $0 .. ddup .. stars } .. drop }
-        let triangle:   Word = { $0 .. 1 .. loop { $0 .. $1 .. stars } }
-        let tower:      Word = { $0 .. ddup .. triangle .. square }
+        let star      = { $0 .. 42 .. emit }
+        let stars     = { $0 .. 0 .. loop(star) .. cr }
+        let square    = { $0 .. ddup .. 0 .. loop { $0 .. ddup .. stars } .. drop }
+        let triangle  = { $0 .. 1 .. loop { $0 .. $1 .. stars } }
+        let tower     = { $0 .. ddup .. triangle .. square }
         s .. cr .. 6 .. tower
         
         // Compare with Forth:

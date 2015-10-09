@@ -59,35 +59,38 @@ func `if`(then: Word, `else`: Word? = nil)(s: Stack<Cell>) {
 /// Therefore the the programmer will generally first push a `true`, and add the Bool's
 /// setup/test/creation as the last part of the body.
 /// Any body ending in `.. true` loops forever.
-func `while`(body: Word)(s: Stack<Cell>) {
+func `while`(body: Word)(s: Stack<Cell>) -> Stack<Cell> {
     while s.pop(Bool) { s .. body }
+    return s
 }
 
 /// Loop executes the `body` n times where n is the difference between the top two
 /// `Int`s on the `Stack`. It behaves much like the Forth word `do?`, except that
 /// it accepts its bounds in either order (i.e. it will never wrap around through
 /// Int.max / Int.min).
-func loop(body: Word)(s: Stack<Cell>) {
+func loop(body: Word)(s: Stack<Cell>) -> Stack<Cell> {
     let i = s.pop(Int)
     let bound = s.pop(Int)
     let range = i.stride(to: bound, by: i < bound ? 1 : -1)
     for _ in range { s .. body }
+    return s
 }
 
 // A version of `loop` that exposes the index as %1.
-func loop(body: (Stack<Cell>, Int) -> ())(s: Stack<Cell>) {
+func loop(body: (Stack<Cell>, Int) -> (Stack<Cell>))(s: Stack<Cell>) -> Stack<Cell> {
     let i = s.pop(Int)
     let bound = s.pop(Int)
     let range = i.stride(to: bound, by: i < bound ? 1 : -1)
     for i in range { body(s, i) }
+    return s
 }
 
 // MARK: - Words, Words, Words
 
 func dot<T>(s: Stack<T>) { print(s.pop()) }
 
-let cr: Word = { _ in print("") }
-let emit: Word = { print(UnicodeScalar($0.pop(Int)), terminator: "") }
+let cr: Word   = { print(""); return $0 }
+let emit: Word = { print(UnicodeScalar($0.pop(Int)), terminator: ""); return $0 }
 
 /// Tick encloses a function (or `Word`) in a `Cell` so that it can be pushed onto the `Stack`.
 /// N.B. we have not yet developed a way to execute functions once they're on the stack.
