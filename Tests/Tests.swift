@@ -46,7 +46,7 @@ class ForthwithTests: XCTestCase {
             print("This executes once.")
             return $0 .. 0 .. 10 .. 0 .. false
             } .. loop {
-                $0 .. 1 .. ((+) as (Int, Int) -> Int) .. ddup .. dot
+                $0 .. 1 .. (+) .. ddup .. dot
         }
     }
     
@@ -69,7 +69,7 @@ class ForthwithTests: XCTestCase {
     }
     
     func testBasics() {
-        s .. 5 .. 4 .. ((+) as (Int, Int) -> Int) .. printStack
+        s .. 5 .. 4 .. (+) .. printStack
         let p = s .. 5
         func adder(a: Int, _ b: Int) -> Int { return a + b }
         func doubler(a: Double) -> Double { return 2*a }

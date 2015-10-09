@@ -36,3 +36,25 @@ func ..<A, B, C, D, E>(s: Stack<Cell>, fn: (A, B, C, D) -> E) -> Stack<Cell> {
 }
 
 // etc.
+
+// MARK: - Apply-Function-upon-Stacked-Items-(Int-Specialized)
+
+// The Int Specialized versions are a nice feature because they help
+// the compiler figure out `s .. 5 .. 4 .. (+)` means Int addition.
+
+/// Apply `fn` upon the contents of `s`.
+func ..<B>(s: Stack<Cell>, fn: Int -> B) -> Stack<Cell> {
+    return s .. rslurry(fn)(s.pop(Int))
+}
+
+func ..<A, C>(s: Stack<Cell>, fn: (A, Int) -> C) -> Stack<Cell> {
+    return s .. rslurry(fn)(s.pop(Int))
+}
+
+func ..<A, B, D>(s: Stack<Cell>, fn: (A, B, Int) -> D) -> Stack<Cell> {
+    return s .. rslurry(fn)(s.pop(Int))
+}
+
+func ..<A, B, C, E>(s: Stack<Cell>, fn: (A, B, C, Int) -> E) -> Stack<Cell> {
+    return s .. rslurry(fn)(s.pop(Int))
+}

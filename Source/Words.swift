@@ -112,7 +112,7 @@ func printStack<T>(s: Stack<T>) { print(s) }
 
 func fib(s: Stack<Cell>) {
     s .. 0 .. 1 .. rot .. 0 .. loop {
-        $0 .. over .. ((+) as (Int, Int) -> Int) .. swap
+        $0 .. over .. (+) .. swap
     }
     s .. drop
 }
