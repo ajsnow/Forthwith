@@ -100,7 +100,7 @@ func tick<A, B>(fn: A -> B)(s: Stack<Cell>) -> Stack<Cell> { s.push(fn); return 
 
 /// While Stack<T> words must be defined with the usual function notation, `Word`
 /// i.e. Stack<Cell> -> () may be defined in a compact (& thus more Forth-ish) way.
-let depth: Word = { $0 .. $0.depth }
+let depth = { $0 .. $0.depth }
 
 // Needed for two reasons:
 // 1. The compiler special cases `print`, telling us it's not a keyword.
