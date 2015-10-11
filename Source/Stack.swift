@@ -7,34 +7,36 @@
 //
 
 /// A simple, infinite last-in first-out `Stack` of `T`.
-final class Stack<T>: StackProto, CustomStringConvertible {
+public final class Stack<T>: StackProto, CustomStringConvertible {
+    
+    public init() {}
 
     private var storage: [T] = []
     
     /// The number of items on the stack.
-    var depth: Int { return storage.count }
+    public var depth: Int { return storage.count }
     
     // Single-item functions
     /// Add the `item` to the top of the stack.
-    func push(item: T) { storage.append(item) }
+    public func push(item: T) { storage.append(item) }
     
     /// Return the `item` on top of the stack.
     /// Requires: depth > 0
-    func pop() -> T {
+    public func pop() -> T {
         //guard depth > 0 else { return nil }
         return storage.removeLast()
     }
     
     /// Remove the `item` on top of the stack.
     /// Requires: depth > 0
-    func drop() { pop() }
+    public func drop() { pop() }
     
     /// Remove the `item` on top of the stack without removal.
     /// Requires: depth > 0
-    func peek() -> T { return storage.last! }
+    public func peek() -> T { return storage.last! }
     
     /// Remove all elements.
-    func removeAll() { storage = [] }
+    public func removeAll() { storage = [] }
     
     // Multi-item variant functions
     //    func push(items: T...) { storage += items }
@@ -57,12 +59,12 @@ final class Stack<T>: StackProto, CustomStringConvertible {
     //    }
     
     // MARK: - CustomStringConvertible
-    var description: String { return "T\(storage)H" }
+    public var description: String { return "T\(storage)H" }
     
 }
 
 // This exits so that we can extend Stack(Proto)<Cell> with Cell specific things.
-protocol StackProto {
+public protocol StackProto {
     
     typealias Element
     
@@ -89,7 +91,7 @@ protocol StackProto {
     func removeAll()
 }
 
-extension StackProto where Element == Cell {
+public extension StackProto where Element == Cell {
     
     func pop<A>(type: A.Type) -> A {
         let anyValue = pop()

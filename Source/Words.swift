@@ -8,26 +8,31 @@
 
 // MARK: - Stack Manipulation
 
-func drop<T>(s: Stack<T>) { s.drop() }
+public func drop<T>(s: Stack<T>) { s.drop() }
 
-func dropAll<T>(s: Stack<T>) { s.removeAll() }
+public func drop2<T>(s: Stack<T>) { s.drop(); s.drop() }
 
-func dup<T>(s: Stack<T>) { s .. s.peek() }
+public func dropAll<T>(s: Stack<T>) { s.removeAll() }
 
-// FIXME: Workaround: The compiler cannot figure out which `dup` to call when you push to the stack after it.
-func ddup<T>(s: Stack<T>) { s .. dup }
+public func dup<T>(s: Stack<T>) { s .. s.peek() }
 
-func swap<T>(s: Stack<T>) { let (b, a) = (s.pop(), s.pop()); s .. b .. a }
+public func dup2<T>(s: Stack<T>) { let (b, a) = (s.pop(), s.pop()); s .. b .. a .. b .. a }
 
-func over<T>(s: Stack<T>) { let (b, a) = (s.pop(), s.pop()); s .. a .. b .. a }
+public func swap<T>(s: Stack<T>) { let (b, a) = (s.pop(), s.pop()); s .. b .. a }
 
-func rot<T>(s: Stack<T>) { let (c, b, a) = (s.pop(), s.pop(), s.pop()); s .. b .. c .. a }
+public func over<T>(s: Stack<T>) { let (b, a) = (s.pop(), s.pop()); s .. a .. b .. a }
 
-func rightRot<T>(s: Stack<T>) { let (c, b, a) = (s.pop(), s.pop(), s.pop()); s .. c .. a .. b }
+public func rot<T>(s: Stack<T>) { let (c, b, a) = (s.pop(), s.pop(), s.pop()); s .. b .. c .. a }
 
-func nip<T>(s: Stack<T>) { s .. swap .. drop }
+public func rightRot<T>(s: Stack<T>) { let (c, b, a) = (s.pop(), s.pop(), s.pop()); s .. c .. a .. b }
 
-func tuck<T>(s: Stack<T>) { s .. swap .. over }
+public func nip<T>(s: Stack<T>) { s .. swap .. drop }
+
+public func tuck<T>(s: Stack<T>) { s .. swap .. over }
+
+// FIXME: Workaround: The compiler cannot figure out which `dup` to call.
+public let ddup = { $0 .. dup }
+public let ddup2 = { $0 .. dup2 }
 
 // MARK: - Control Flow
 
@@ -42,7 +47,7 @@ func tuck<T>(s: Stack<T>) { s .. swap .. over }
 // but that seems like too much work for now.
 
 /// If `if` then `then` else `else`. :)
-func `if`(then: Word, `else`: Word? = nil)(s: Stack<Cell>) {
+public func `if`(then: Word, `else`: Word? = nil)(s: Stack<Cell>) {
     if s.pop(Bool) {
         s .. then
     } else if let `else` = `else` {
@@ -59,7 +64,7 @@ func `if`(then: Word, `else`: Word? = nil)(s: Stack<Cell>) {
 /// Therefore the the programmer will generally first push a `true`, and add the Bool's
 /// setup/test/creation as the last part of the body.
 /// Any body ending in `.. true` loops forever.
-func `while`(body: Word)(s: Stack<Cell>) -> Stack<Cell> {
+public func `while`(body: Word)(s: Stack<Cell>) -> Stack<Cell> {
     while s.pop(Bool) { s .. body }
     return s
 }
@@ -68,7 +73,7 @@ func `while`(body: Word)(s: Stack<Cell>) -> Stack<Cell> {
 /// `Int`s on the `Stack`. It behaves much like the Forth word `do?`, except that
 /// it accepts its bounds in either order (i.e. it will never wrap around through
 /// Int.max / Int.min).
-func loop(body: Word)(s: Stack<Cell>) -> Stack<Cell> {
+public func loop(body: Word)(s: Stack<Cell>) -> Stack<Cell> {
     let i = s.pop(Int)
     let bound = s.pop(Int)
     let range = i.stride(to: bound, by: i < bound ? 1 : -1)
@@ -77,7 +82,7 @@ func loop(body: Word)(s: Stack<Cell>) -> Stack<Cell> {
 }
 
 // A version of `loop` that exposes the index as %1.
-func loop(body: (Stack<Cell>, Int) -> (Stack<Cell>))(s: Stack<Cell>) -> Stack<Cell> {
+public func loop(body: (Stack<Cell>, Int) -> (Stack<Cell>))(s: Stack<Cell>) -> Stack<Cell> {
     let i = s.pop(Int)
     let bound = s.pop(Int)
     let range = i.stride(to: bound, by: i < bound ? 1 : -1)
@@ -87,10 +92,10 @@ func loop(body: (Stack<Cell>, Int) -> (Stack<Cell>))(s: Stack<Cell>) -> Stack<Ce
 
 // MARK: - Words, Words, Words
 
-func dot<T>(s: Stack<T>) { print(s.pop()) }
+public func dot<T>(s: Stack<T>) { print(s.pop(), terminator: "") }
 
-let cr: Word   = { print(""); return $0 }
-let emit: Word = { print(UnicodeScalar($0.pop(Int)), terminator: ""); return $0 }
+public let cr: Word   = { print(""); return $0 }
+public let emit: Word = { print(UnicodeScalar($0.pop(Int)), terminator: ""); return $0 }
 
 /// Tick encloses a function (or `Word`) in a `Cell` so that it can be pushed onto the `Stack`.
 /// N.B. we have not yet developed a way to execute functions once they're on the stack.
@@ -100,17 +105,17 @@ func tick<A, B>(fn: A -> B)(s: Stack<Cell>) -> Stack<Cell> { s.push(fn); return 
 
 /// While Stack<T> words must be defined with the usual function notation, `Word`
 /// i.e. Stack<Cell> -> () may be defined in a compact (& thus more Forth-ish) way.
-let depth = { $0 .. $0.depth }
+public let depth = { $0 .. $0.depth }
 
 // Needed for two reasons:
 // 1. The compiler special cases `print`, telling us it's not a keyword.
 // 2. Its optional arguments mess up our normal composition word.
 //    `.forEach(print)` has the same problems.
-func printStack<T>(s: Stack<T>) { print(s) }
+public func printStack<T>(s: Stack<T>) { print(s) }
 
 // MARK: - Fun/Test
 
-func fib(s: Stack<Cell>) {
+public func fib(s: Stack<Cell>) {
     s .. 0 .. 1 .. rot .. 0 .. loop {
         $0 .. over .. (+) .. swap
     }

@@ -14,7 +14,7 @@
 /// defining `Word` with the return value allows a user to define 
 /// custom `Word`s with less boilerplate. Easy factoring is a major
 /// plus to Forth's model and should be preserved where possible.
-typealias Word = Stack<Cell>->Stack<Cell>
+public typealias Word = Stack<Cell>->Stack<Cell>
 
 /// This is the Word Composition Operator. It is our central
 /// conceit and serves several purposes:
@@ -31,23 +31,23 @@ infix operator .. { associativity left }
 // MARK: - Apply Words
 
 /// Apply a generic, returnless `word` onto a generic stack, `s`.
-func ..<T>(s: Stack<T>, word: Stack<T>->()) -> Stack<T> { word(s); return s }
+public func ..<T>(s: Stack<T>, word: Stack<T>->()) -> Stack<T> { word(s); return s }
 
 /// Apply a returnless `word` on `s`. This non-generic version is needed to
 /// help the compiler disambiguate between the two generic applies.
-func ..(s: Stack<Cell>, word: Stack<Cell>->()) -> Stack<Cell> { word(s); return s }
+public func ..(s: Stack<Cell>, word: Stack<Cell>->()) -> Stack<Cell> { word(s); return s }
 
 /// Apply `word` on `s`.
-func ..(s: Stack<Cell>, word: Word) -> Stack<Cell> { return word(s) }
+public func ..(s: Stack<Cell>, word: Word) -> Stack<Cell> { return word(s) }
 
 // MARK: - Push Items
 
 /// Push a `cell` onto `s`.
-func ..<T>(s: Stack<T>, cell: T) -> Stack<T> { s.push(cell); return s }
+public func ..<T>(s: Stack<T>, cell: T) -> Stack<T> { s.push(cell); return s }
 
 /// Push an `item` (anything) onto `s`.
 func ..<T>(s: Stack<Cell>, item: T) -> Stack<Cell> { s.push(item); return s }
 
 // MARK: - Helper Types
 
-typealias Cell = Any
+public typealias Cell = Any
