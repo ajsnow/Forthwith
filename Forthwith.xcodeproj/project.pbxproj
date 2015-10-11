@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB2CF0E41BCA2149001A40C8 /* LifeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2CF0E31BCA2149001A40C8 /* LifeView.swift */; };
 		EB590AF21BC462500092817E /* Magic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB590AE81BC462500092817E /* Magic.swift */; };
 		EB590AF31BC462500092817E /* MoreMagic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB590AE91BC462500092817E /* MoreMagic.swift */; };
 		EB590AF41BC462500092817E /* Slurry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB590AEA1BC462500092817E /* Slurry.swift */; };
@@ -14,6 +15,9 @@
 		EB590AF61BC462500092817E /* SwiftlyForth.h in Headers */ = {isa = PBXBuildFile; fileRef = EB590AEC1BC462500092817E /* SwiftlyForth.h */; };
 		EB590AF71BC462500092817E /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB590AED1BC462500092817E /* Words.swift */; };
 		EB590AFB1BC463440092817E /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB590AF01BC462500092817E /* Tests.swift */; };
+		EBCBA1AA1BCA1F2C001A40C8 /* Life.h in Headers */ = {isa = PBXBuildFile; fileRef = EBCBA1A91BCA1F2C001A40C8 /* Life.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EBCBA1AF1BCA1F32001A40C8 /* Forthwith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBD2AE581BC0DCE70092817E /* Forthwith.framework */; };
+		EBCBA1B11BCA1F3D001A40C8 /* Life.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCBA1B01BCA1F3D001A40C8 /* Life.swift */; };
 		EBD2AE631BC0DCE80092817E /* Forthwith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBD2AE581BC0DCE70092817E /* Forthwith.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB2CF0E31BCA2149001A40C8 /* LifeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeView.swift; sourceTree = "<group>"; };
 		EB5672931BC86EDD0092817E /* Henceforth.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Henceforth.playground; sourceTree = "<group>"; };
 		EB590AE71BC462500092817E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB590AE81BC462500092817E /* Magic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Magic.swift; sourceTree = "<group>"; };
@@ -38,11 +43,23 @@
 		EB590AED1BC462500092817E /* Words.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 		EB590AEF1BC462500092817E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB590AF01BC462500092817E /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		EBCBA1A71BCA1F2C001A40C8 /* Life.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Life.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBCBA1A91BCA1F2C001A40C8 /* Life.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Life.h; sourceTree = "<group>"; };
+		EBCBA1AB1BCA1F2C001A40C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBCBA1B01BCA1F3D001A40C8 /* Life.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Life.swift; sourceTree = "<group>"; };
 		EBD2AE581BC0DCE70092817E /* Forthwith.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Forthwith.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD2AE621BC0DCE80092817E /* ForthwithTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ForthwithTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EBCBA1A31BCA1F2C001A40C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBCBA1AF1BCA1F32001A40C8 /* Forthwith.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EBD2AE541BC0DCE70092817E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -61,7 +78,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EB590AE61BC462500092817E /* Source */ = {
+		EB590AE61BC462500092817E /* Forthwith */ = {
 			isa = PBXGroup;
 			children = (
 				EB590AE81BC462500092817E /* Magic.swift */,
@@ -71,6 +88,7 @@
 				EB590AED1BC462500092817E /* Words.swift */,
 				EB590AFA1BC462580092817E /* Support */,
 			);
+			name = Forthwith;
 			path = Source;
 			sourceTree = "<group>";
 		};
@@ -92,12 +110,24 @@
 			name = Support;
 			sourceTree = "<group>";
 		};
+		EBCBA1A81BCA1F2C001A40C8 /* Life */ = {
+			isa = PBXGroup;
+			children = (
+				EBCBA1A91BCA1F2C001A40C8 /* Life.h */,
+				EBCBA1AB1BCA1F2C001A40C8 /* Info.plist */,
+				EBCBA1B01BCA1F3D001A40C8 /* Life.swift */,
+				EB2CF0E31BCA2149001A40C8 /* LifeView.swift */,
+			);
+			path = Life;
+			sourceTree = "<group>";
+		};
 		EBD2AE4E1BC0DCE70092817E = {
 			isa = PBXGroup;
 			children = (
 				EB5672931BC86EDD0092817E /* Henceforth.playground */,
-				EB590AE61BC462500092817E /* Source */,
+				EB590AE61BC462500092817E /* Forthwith */,
 				EB590AEE1BC462500092817E /* Tests */,
+				EBCBA1A81BCA1F2C001A40C8 /* Life */,
 				EBD2AE591BC0DCE70092817E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,6 +137,7 @@
 			children = (
 				EBD2AE581BC0DCE70092817E /* Forthwith.framework */,
 				EBD2AE621BC0DCE80092817E /* ForthwithTests.xctest */,
+				EBCBA1A71BCA1F2C001A40C8 /* Life.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,6 +145,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		EBCBA1A41BCA1F2C001A40C8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBCBA1AA1BCA1F2C001A40C8 /* Life.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EBD2AE551BC0DCE70092817E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -125,6 +164,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		EBCBA1A61BCA1F2C001A40C8 /* Life */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBCBA1AE1BCA1F2C001A40C8 /* Build configuration list for PBXNativeTarget "Life" */;
+			buildPhases = (
+				EBCBA1A21BCA1F2C001A40C8 /* Sources */,
+				EBCBA1A31BCA1F2C001A40C8 /* Frameworks */,
+				EBCBA1A41BCA1F2C001A40C8 /* Headers */,
+				EBCBA1A51BCA1F2C001A40C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Life;
+			productName = Life;
+			productReference = EBCBA1A71BCA1F2C001A40C8 /* Life.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		EBD2AE571BC0DCE70092817E /* Forthwith */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EBD2AE6C1BC0DCE80092817E /* Build configuration list for PBXNativeTarget "Forthwith" */;
@@ -170,6 +227,9 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Andrew Snow";
 				TargetAttributes = {
+					EBCBA1A61BCA1F2C001A40C8 = {
+						CreatedOnToolsVersion = 7.1;
+					};
 					EBD2AE571BC0DCE70092817E = {
 						CreatedOnToolsVersion = 7.1;
 					};
@@ -192,11 +252,19 @@
 			targets = (
 				EBD2AE571BC0DCE70092817E /* Forthwith */,
 				EBD2AE611BC0DCE80092817E /* ForthwithTests */,
+				EBCBA1A61BCA1F2C001A40C8 /* Life */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EBCBA1A51BCA1F2C001A40C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EBD2AE561BC0DCE70092817E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,6 +282,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EBCBA1A21BCA1F2C001A40C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB2CF0E41BCA2149001A40C8 /* LifeView.swift in Sources */,
+				EBCBA1B11BCA1F3D001A40C8 /* Life.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EBD2AE531BC0DCE70092817E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -245,6 +322,47 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		EBCBA1AC1BCA1F2C001A40C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Life/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = su.snw.Forthwith.Life;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EBCBA1AD1BCA1F2C001A40C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Life/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = su.snw.Forthwith.Life;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		EBD2AE6A1BC0DCE80092817E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -395,6 +513,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EBCBA1AE1BCA1F2C001A40C8 /* Build configuration list for PBXNativeTarget "Life" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBCBA1AC1BCA1F2C001A40C8 /* Debug */,
+				EBCBA1AD1BCA1F2C001A40C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EBD2AE521BC0DCE70092817E /* Build configuration list for PBXProject "Forthwith" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
