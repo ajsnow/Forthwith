@@ -94,6 +94,8 @@ public protocol StackProto {
 public extension StackProto where Element == Cell {
     
     func pop<A>(type: A.Type) -> A {
+        if A.self is Void.Type { return Void() as! A }
+        
         let anyValue = pop()
         guard let value = anyValue as? A else { fatalError("Type error: expecting \(A.self); recieved \(anyValue.dynamicType)") }
         return value
