@@ -82,11 +82,11 @@ public func loop(body: Word)(s: Stack<Cell>) -> Stack<Cell> {
 }
 
 // A version of `loop` that exposes the index as %1.
-public func loop(body: (Stack<Cell>, Int) -> (Stack<Cell>))(s: Stack<Cell>) -> Stack<Cell> {
+public func loopCnt(body: Word)(s: Stack<Cell>) -> Stack<Cell> {
     let i = s.pop(Int)
     let bound = s.pop(Int)
     let range = i.stride(to: bound, by: i < bound ? 1 : -1)
-    for i in range { body(s, i) }
+    for i in range { s .. i .. body }
     return s
 }
 
