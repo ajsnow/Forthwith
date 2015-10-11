@@ -98,8 +98,16 @@ public let cr: Word   = { print(""); return $0 }
 public let emit: Word = { print(UnicodeScalar($0.pop(Int)), terminator: ""); return $0 }
 
 /// Tick encloses a function (or `Word`) in a `Cell` so that it can be pushed onto the `Stack`.
-/// N.B. we have not yet developed a way to execute functions once they're on the stack.
-func tick<A, B>(fn: A -> B)(s: Stack<Cell>) -> Stack<Cell> { s.push(fn); return s }
+public func tick<A, B>(fn: A -> B)(s: Stack<Cell>) -> Stack<Cell> { s.push(fn); return s }
+
+/// Execute takes a Word from the top of the `Stack` and applies it to the stack.
+public let execute: Word = { let word = $0.pop(Word); return $0 .. word }
+
+// We'd like to be able to store stack values back to variables, but 
+// partial application of functions with 'inout' parameters is not allowed.
+//public func store<T>(inout location: T)(newValue: T) -> () {
+//    location = newValue
+//}
 
 // MARK: - Debug
 
