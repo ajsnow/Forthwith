@@ -46,7 +46,12 @@ public func ..(s: Stack<Cell>, word: Word) -> Stack<Cell> { return word(s) }
 public func ..<T>(s: Stack<T>, cell: T) -> Stack<T> { s.push(cell); return s }
 
 /// Push an `item` (anything) onto `s`.
-func ..<T>(s: Stack<Cell>, item: T) -> Stack<Cell> { s.push(item); return s }
+public func ..<T>(s: Stack<Cell>, item: T) -> Stack<Cell> {
+    if !(T.self is Void.Type) { // We'll never want to push Void. We need this to avoid pushing the return results of converted A -> Void functions.
+        s.push(item)
+    }
+    return s
+}
 
 // MARK: - Helper Types
 

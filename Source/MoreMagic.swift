@@ -19,7 +19,11 @@ public func ..<A, B, C>(s: Stack<Cell>, fn: A -> B -> C) -> Stack<Cell> {
 
 // MARK: - Apply-Function-upon-Stacked-Items
 /// Apply `fn` upon the contents of `s`.
-func ..<A, B>(s: Stack<Cell>, fn: A -> B) -> Stack<Cell> {
+public func ..<A>(s: Stack<Cell>, fn: () -> A) -> Stack<Cell> {
+    return s .. fn()
+}
+
+public func ..<A, B>(s: Stack<Cell>, fn: A -> B) -> Stack<Cell> {
     return s .. rslurry(fn)(s.pop(A))
 }
 
