@@ -124,8 +124,5 @@ public func printStack<T>(s: Stack<T>) { print(s) }
 // MARK: - Fun/Test
 
 public func fib(s: Stack<Cell>) {
-    s .. 0 .. 1 .. rot .. 0 .. loop {
-        $0 .. over .. (+) .. swap
-    }
-    s .. drop
+    s .. 0 .. 1 .. rot .. 0 .. loop { $0 .. over .. (+) .. swap } .. drop
 }

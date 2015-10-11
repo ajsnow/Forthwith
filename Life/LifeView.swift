@@ -11,10 +11,9 @@ import Forthwith
 
 public class LifeView: NSView {
     
-    let aliveColor = NSColor(red: 0.33, green: 0.83, blue: 1, alpha: 1) // A pretty, light blue.
+    let aliveColor = NSColor(red: 0.33, green: 0.83, blue: 1, alpha: 1) // A nice, light blue.
     
     public override func drawRect(dirtyRect: NSRect) {
-//        NSBezierPath.fillRect(dirtyRect)
         aliveColor.set()
         drawLife(dirtyRect)
     }
