@@ -12,7 +12,7 @@
 		EB590AF31BC462500092817E /* MoreMagic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB590AE91BC462500092817E /* MoreMagic.swift */; };
 		EB590AF41BC462500092817E /* Slurry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB590AEA1BC462500092817E /* Slurry.swift */; };
 		EB590AF51BC462500092817E /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB590AEB1BC462500092817E /* Stack.swift */; };
-		EB590AF61BC462500092817E /* SwiftlyForth.h in Headers */ = {isa = PBXBuildFile; fileRef = EB590AEC1BC462500092817E /* SwiftlyForth.h */; };
+		EB590AF61BC462500092817E /* Forthwith.h in Headers */ = {isa = PBXBuildFile; fileRef = EB590AEC1BC462500092817E /* Forthwith.h */; };
 		EB590AF71BC462500092817E /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB590AED1BC462500092817E /* Words.swift */; };
 		EB590AFB1BC463440092817E /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB590AF01BC462500092817E /* Tests.swift */; };
 		EBCBA1AA1BCA1F2C001A40C8 /* Life.h in Headers */ = {isa = PBXBuildFile; fileRef = EBCBA1A91BCA1F2C001A40C8 /* Life.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -39,7 +39,7 @@
 		EB590AE91BC462500092817E /* MoreMagic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreMagic.swift; sourceTree = "<group>"; };
 		EB590AEA1BC462500092817E /* Slurry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slurry.swift; sourceTree = "<group>"; };
 		EB590AEB1BC462500092817E /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
-		EB590AEC1BC462500092817E /* SwiftlyForth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftlyForth.h; sourceTree = "<group>"; };
+		EB590AEC1BC462500092817E /* Forthwith.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Forthwith.h; sourceTree = "<group>"; };
 		EB590AED1BC462500092817E /* Words.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 		EB590AEF1BC462500092817E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB590AF01BC462500092817E /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Tests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -105,8 +105,17 @@
 		EB590AFA1BC462580092817E /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				EB590AEC1BC462500092817E /* SwiftlyForth.h */,
+				EB590AEC1BC462500092817E /* Forthwith.h */,
 				EB590AE71BC462500092817E /* Info.plist */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		EBAC03911BCB3E0D001A40C8 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				EBCBA1A91BCA1F2C001A40C8 /* Life.h */,
+				EBCBA1AB1BCA1F2C001A40C8 /* Info.plist */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -114,10 +123,9 @@
 		EBCBA1A81BCA1F2C001A40C8 /* Life */ = {
 			isa = PBXGroup;
 			children = (
-				EBCBA1A91BCA1F2C001A40C8 /* Life.h */,
-				EBCBA1AB1BCA1F2C001A40C8 /* Info.plist */,
 				EBCBA1B01BCA1F3D001A40C8 /* Life.swift */,
 				EB2CF0E31BCA2149001A40C8 /* LifeView.swift */,
+				EBAC03911BCB3E0D001A40C8 /* Support */,
 			);
 			path = Life;
 			sourceTree = "<group>";
@@ -159,7 +167,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB590AF61BC462500092817E /* SwiftlyForth.h in Headers */,
+				EB590AF61BC462500092817E /* Forthwith.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
