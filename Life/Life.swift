@@ -71,22 +71,22 @@ let printRow = { $0 .. cr }
 public let printWorld = { $0 .. tick(printRow) .. tick(printCritter) .. uponWorld .. cr }
 
 // Factor out adjusting coordinates
-let p1 = { $0 .. 1 .. (+) }
-let m1 = { $0 .. 1 .. (-) }
-let updateX = { $0 .. x .. swap .. execute .. setX }
-let updateY = { $0 .. y .. swap .. execute .. setY }
+let incX = { $0 .. x .. 1 .. (+) .. setX }
+let decX = { $0 .. x .. 1 .. (-) .. setX }
+let incY = { $0 .. y .. 1 .. (+) .. setY }
+let decY = { $0 .. y .. 1 .. (-) .. setY }
 
 // Apply `Word` to each neighbor of the starting critter & finally return to starting location.
 let neighbors = [
-    { $0 .. tick(p1) .. updateY .. uponCritter },
-    { $0 .. tick(p1) .. updateX .. uponCritter },
-    { $0 .. tick(m1) .. updateY .. uponCritter },
-    { $0 .. tick(m1) .. updateY .. uponCritter },
-    { $0 .. tick(m1) .. updateX .. uponCritter },
-    { $0 .. tick(m1) .. updateX .. uponCritter },
-    { $0 .. tick(p1) .. updateY .. uponCritter },
-    { $0 .. tick(p1) .. updateY .. uponCritter },
-    { $0 .. tick(m1) .. updateY .. tick(p1) .. updateX .. drop }
+    { $0 .. incY .. uponCritter },
+    { $0 .. incX .. uponCritter },
+    { $0 .. decY .. uponCritter },
+    { $0 .. decY .. uponCritter },
+    { $0 .. decX .. uponCritter },
+    { $0 .. decX .. uponCritter },
+    { $0 .. incY .. uponCritter },
+    { $0 .. incY .. uponCritter },
+    { $0 .. incX .. decY .. drop }
 ]
 let uponneighbors = { $0 .. 9 .. 0 .. loopCnt { $0 .. neighbors[$0.pop(Int)] } }
 
