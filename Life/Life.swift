@@ -38,12 +38,19 @@ var world = pattern.map { $0.map { Critter(s: $0) } }
 let width = world.first!.count
 let height = world.count
 
+// Setting external vars is a bit painful.
+// Swift currently doesn't allow partially applied functions to contain inout parameters,
+// thus we cannot create a generic, well behaved set(&varname) to grap stuff off of the stack.
+// We also cannot define another composition operator overload to handle `s .. 5 .. &intVar`
+// as this currently crashes the compiler. :'(
+// The inline closure `s .. 5 .. { intVar = $0 }` works, but is quite ugly, even by Forthwith standards.
+// So we'll define some custom setters & array getters/setters:
 var (x, y) = (0, 0)
 func setX(i: Int) { x = abs(i % width) }
 func setY(i: Int) { y = abs(i % height) }
 func getCritter() -> Critter { return world[y][x] }
 
-// Updates happen atomically.
+// We have two worlds & save back from our working world at the end of each cycle.
 var newWorld = world
 func setCritter(c: Critter)  { newWorld[y][x] = c }
 func saveWorld() { world = newWorld }
