@@ -31,8 +31,8 @@ public func nip<T>(s: Stack<T>) { s .. swap .. drop }
 public func tuck<T>(s: Stack<T>) { s .. swap .. over }
 
 // FIXME: Workaround: The compiler cannot figure out which `dup` to call.
-public let ddup = { $0 .. dup }
-public let ddup2 = { $0 .. dup2 }
+public let ddup = { $0 .. (dup as (Stack<Cell>)->() ) }
+public let ddup2 = { $0 .. (dup2 as (Stack<Cell>)->() ) }
 
 // MARK: - Control Flow
 
