@@ -12,9 +12,9 @@
 		EB590AF31BC462500092817E /* MoreMagic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB590AE91BC462500092817E /* MoreMagic.swift */; };
 		EB590AF41BC462500092817E /* Slurry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB590AEA1BC462500092817E /* Slurry.swift */; };
 		EB590AF51BC462500092817E /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB590AEB1BC462500092817E /* Stack.swift */; };
-		EB590AF61BC462500092817E /* Forthwith.h in Headers */ = {isa = PBXBuildFile; fileRef = EB590AEC1BC462500092817E /* Forthwith.h */; };
 		EB590AF71BC462500092817E /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB590AED1BC462500092817E /* Words.swift */; };
 		EB590AFB1BC463440092817E /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB590AF01BC462500092817E /* Tests.swift */; };
+		EBAC03931BCB41CD001A40C8 /* Forthwith.h in Headers */ = {isa = PBXBuildFile; fileRef = EB590AEC1BC462500092817E /* Forthwith.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EBCBA1AA1BCA1F2C001A40C8 /* Life.h in Headers */ = {isa = PBXBuildFile; fileRef = EBCBA1A91BCA1F2C001A40C8 /* Life.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EBCBA1AF1BCA1F32001A40C8 /* Forthwith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBD2AE581BC0DCE70092817E /* Forthwith.framework */; };
 		EBCBA1B11BCA1F3D001A40C8 /* Life.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCBA1B01BCA1F3D001A40C8 /* Life.swift */; };
@@ -167,7 +167,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB590AF61BC462500092817E /* Forthwith.h in Headers */,
+				EBAC03931BCB41CD001A40C8 /* Forthwith.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +345,7 @@
 				INFOPLIST_FILE = Life/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = su.snw.Forthwith.Life;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -366,7 +366,7 @@
 				INFOPLIST_FILE = Life/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = su.snw.Forthwith.Life;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
