@@ -42,11 +42,12 @@
 		EB590AEC1BC462500092817E /* SwiftlyForth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftlyForth.h; sourceTree = "<group>"; };
 		EB590AED1BC462500092817E /* Words.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 		EB590AEF1BC462500092817E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EB590AF01BC462500092817E /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		EB590AF01BC462500092817E /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Tests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		EBAC03901BCB3BA5001A40C8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EBCBA1A71BCA1F2C001A40C8 /* Life.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Life.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBCBA1A91BCA1F2C001A40C8 /* Life.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Life.h; sourceTree = "<group>"; };
 		EBCBA1AB1BCA1F2C001A40C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EBCBA1B01BCA1F3D001A40C8 /* Life.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Life.swift; sourceTree = "<group>"; };
+		EBCBA1B01BCA1F3D001A40C8 /* Life.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Life.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EBD2AE581BC0DCE70092817E /* Forthwith.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Forthwith.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD2AE621BC0DCE80092817E /* ForthwithTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ForthwithTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -124,6 +125,7 @@
 		EBD2AE4E1BC0DCE70092817E = {
 			isa = PBXGroup;
 			children = (
+				EBAC03901BCB3BA5001A40C8 /* README.md */,
 				EB5672931BC86EDD0092817E /* Henceforth.playground */,
 				EB590AE61BC462500092817E /* Forthwith */,
 				EB590AEE1BC462500092817E /* Tests */,

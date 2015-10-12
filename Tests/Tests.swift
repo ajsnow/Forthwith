@@ -144,21 +144,21 @@ class ForthwithTests: XCTestCase {
             { $0 .. tick(p1) .. updateY .. uponCritter },
             { $0 .. tick(m1) .. updateY .. tick(p1) .. updateX .. drop }
         ]
-        let uponNeighboors = { $0 .. 9 .. 0 .. loopCnt { $0 .. neighbors[$0.pop(Int)] } }
+        let uponneighbors = { $0 .. 9 .. 0 .. loopCnt { $0 .. neighbors[$0.pop(Int)] } }
         
-        // Count living neighboors.
+        // Count living neighbors.
         let critterEq = ((==) as (Critter, Critter) -> Bool) // Using just (==) will make the compiler assume we wanted (Int, Int) -> Bool
         let countLiving = { $0 .. getCritter() .. Critter.Alive .. critterEq .. `if`({ $0 .. swap .. 1 .. (+) .. swap }) }
-        let countLivingNeighboors = { $0 .. 0 .. tick(countLiving) .. uponNeighboors }
+        let countLivingneighbors = { $0 .. 0 .. tick(countLiving) .. uponneighbors }
         
-        // Update critters according to the number of living neighboors.
+        // Update critters according to the number of living neighbors.
         let grow = { $0 .. setCritter(.Alive) }
         let die = { $0 .. setCritter(.Dead) }
         let growOrDie = { $0 .. 3 .. (==) .. `if`(grow, `else`: die) }
         let updateCritterState = { $0 .. ddup .. 2 .. (!=) .. `if`(growOrDie, `else`: {$0 .. drop}) }
         
         // Update critters.
-        let updateCritter = { $0 .. countLivingNeighboors .. updateCritterState }
+        let updateCritter = { $0 .. countLivingneighbors .. updateCritterState }
         let doNothing: Forthwith.Word = { $0 }
         let updateWorld = { $0 .. tick(doNothing) .. tick(updateCritter) .. uponWorld .. saveWorld }
         

@@ -13,7 +13,7 @@ In [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language), functions
 1 2 3 * -
     [-5]
 ```
-Words are constructed to build a vocabulary to discribe the problem:
+Words are constructed to build a vocabulary to describe the problem:
 
 ```
 : fib 0 1 rot 0 ?do over + swap loop drop ;
@@ -22,7 +22,7 @@ Words are constructed to build a vocabulary to discribe the problem:
 ```
 Let's break down this example:
 
-We want our `fib` word to take a number n, and to return the nth number from the Fibonacci sequence. So we enter `fib` with, say, `10` on the stack. We push the first two Fibonacci numbers, `0` & `1`, for later use. We're going to impliment the iterative algorithm, so we need to setup a loop from 0 to our n (10), so we `rot` which moves our `10` from the 3rd position on the stack to the top yeilding `0 1 10` and push `0`, this gives us `0 1 10 0`. Then `?do` takes the difference two numbers and will execute the words between it and `loop` that many times. Thus, `0 1` are left on the stack and we'll now execute the loop body 10 times. 
+We want our `fib` word to take a number n, and to return the nth number from the Fibonacci sequence. So we enter `fib` with, say, `10` on the stack. We push the first two Fibonacci numbers, `0` & `1`, for later use. We're going to implement the iterative algorithm, so we need to setup a loop from 0 to our n (10), so we `rot` which moves our `10` from the 3rd position on the stack to the top yielding `0 1 10` and push `0`, this gives us `0 1 10 0`. Then `?do` takes the difference of the two numbers and will execute the words between it and `loop` that many times. Thus, `0 1` are left on the stack and we'll now execute the loop body 10 times. 
 
 `over` takes the 2nd to top item and copies it to the top, making our stack `0 1 0`, `+` makes it `0 1` and `swap` makes it `1 0`.
 
@@ -30,7 +30,7 @@ If you work through the loop again, the stack would be `1 1`, then `2 1`, `3 2`,
 
 ## Thus, Forthwith
 
-Let's look at how `fib` is implimented in Forthwith:
+Let's look at how `fib` is implemented in Forthwith:
 
 ```
 let fib = { $0 .. 0 .. 1 .. rot .. 0 .. loop { $0 .. over .. (+) .. swap } .. drop }
@@ -68,13 +68,13 @@ The big trick is obviously in `..` — our stack composition operator\*. It take
 Our stack's element type is `Any` so pushing to it is simple. As is applying stack-aware words:
 `func ..(s: Stack<Cell>, word: Word) -> Stack<Cell> { return word(s) }`
 
-On the other hand, taking arbirary Swift functions and methods is a bit more fun:
+On the other hand, taking arbitrary Swift functions and methods is a bit more fun:
 
 ## Higher-order Functions are Fun
 
 You have a stack of `Any`s that you can `.pop()` off one at a time. You have a function of the form `(Int, String, Double) -> String`. How do you get the needed parameters off of the top of the stack and then execute it?
 
-As you may know, a Swift function can be called with a tuple of its paramaters instead of the parameters themselves, anda higher order function that takes `fn: A -> B` can infer `A` to be such a tuple of parameters for a multi-parameter function.
+As you may know, a Swift function can be called with a tuple of its parameters instead of the parameters themselves, and higher order function that takes `fn: A -> B` can infer `A` to be such a tuple of parameters for a multi-parameter function.
 
 However, these facts are massive red herrings.
 
@@ -86,7 +86,7 @@ Ah, but there's still a problem: class, struct & enum members. These come as `T 
 
 ## An Annotated Example: Life
 
-So the final thing we'd like to show is an example program that impliments the Game of Life, to demonstrate what this can look like tackling not-single-line (save for in [APL](http://dfns.dyalog.com/c_life.htm)) problems:
+So the final thing we'd like to show is an example program that implements the Game of Life, to demonstrate what this can look like tackling not-single-line (save for in [APL](http://dfns.dyalog.com/c_life.htm)) problems:
 
 ```
 import Forthwith
@@ -166,12 +166,12 @@ let neighbors = [
 ]
 let uponNeighboors = { $0 .. 9 .. 0 .. loopCnt { $0 .. neighbors[$0.pop(Int)] } }
 
-// Count living neighboors.
+// Count living neighbors.
 let critterEq = ((==) as (Critter, Critter) -> Bool) // Using just (==) will make the compiler assume we wanted (Int, Int) -> Bool
 let countLiving = { $0 .. getCritter .. Critter.Alive .. critterEq .. `if`({ $0 .. swap .. 1 .. (+) .. swap }) }
 let countLivingNeighboors = { $0 .. 0 .. tick(countLiving) .. uponNeighboors }
 
-// Update critters according to the number of living neighboors.
+// Update critters according to the number of living neighbors.
 let grow = { $0 .. setCritter(.Alive) }
 let die = { $0 .. setCritter(.Dead) }
 let growOrDie = { $0 .. 3 .. (==) .. `if`(grow, `else`: die) }
@@ -182,13 +182,13 @@ let updateCritter = { $0 .. countLivingNeighboors .. updateCritterState }
 let doNothing: Forthwith.Word = { $0 }
 public let updateWorld = { $0 .. tick(doNothing) .. tick(updateCritter) .. uponWorld .. saveWorld }
 
-// A simualtion is a round of updating and printing.
+// A simulation is a round of updating and printing.
 public let simulatePrint = { $0 .. dot .. cr .. updateWorld .. printWorld }
 ```
 
 
 ## License
 
-You ought not use this in any context where licensing matters, but, for reference, Frothwith is released under the MIT license.
+You ought not use this in any context where licensing matters, but, for reference, Forthwith is released under the MIT license.
 
-\*Sadly, whitespace was not avalible. But at least `..` has the nice properties of being easy to type, otherwise unused, and visually unabstrusive (relative to our other options, at least).
+\*Sadly, whitespace was not available. But at least `..` has the nice properties of being easy to type, otherwise unused, and visually unobtrusive (relative to our other options, at least).
