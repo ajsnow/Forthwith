@@ -11,19 +11,21 @@ import Forthwith
 // Conway's Game of Life
 // In Forthwith Swift
 
-let pattern = [
-    ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"],
-    ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"],
-    ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"],
-    ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"],
-    ["_", "_", "_", "_", "_", "_", "_", "X", "_", "_", "_", "X", "_", "_", "_", "_", "_", "_", "_", "_"],
-    ["_", "_", "_", "_", "_", "_", "_", "X", "_", "X", "_", "X", "_", "_", "_", "_", "_", "_", "_", "_"],
-    ["_", "_", "_", "_", "_", "_", "_", "X", "_", "_", "_", "X", "_", "_", "_", "_", "_", "_", "_", "_"],
-    ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"],
-    ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"],
-    ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"],
-    ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"]
+let exampleWorld = [
+    "____________________",
+    "____________________",
+    "____________________",
+    "____________________",
+    "_______X___X________",
+    "_______X_X_X________",
+    "_______X___X________",
+    "____________________",
+    "____________________",
+    "____________________",
+    "____________________"
 ]
+
+func initWorld(pattern: [String]) -> [[Critter]] { return pattern.map { $0.characters.map { Critter(s: String($0)) } } }
 
 
 
@@ -34,13 +36,13 @@ enum Critter { case Alive; case Dead } // Naming another type `Cell` seemed need
 extension Critter: CustomStringConvertible { var description: String { return self == .Alive ? "X" : "_" } }
 extension Critter { init(s: String) { self = s == "X" ? .Alive : .Dead } }
 
-var world = pattern.map { $0.map { Critter(s: $0) } }
+var world = initWorld(exampleWorld)
 let width = world.first!.count
 let height = world.count
 
 // Setting external vars is a bit painful.
 // Swift currently doesn't allow partially applied functions to contain inout parameters,
-// thus we cannot create a generic, well behaved set(&varname) to grap stuff off of the stack.
+// thus we cannot create a generic, well-behaved set(&varname) to grap stuff off of the stack.
 // We also cannot define another composition operator overload to handle `s .. 5 .. &intVar`
 // as this currently crashes the compiler. :'(
 // The inline closure `s .. 5 .. { intVar = $0 }` works, but is quite ugly, even by Forthwith standards.
@@ -50,7 +52,7 @@ func setX(i: Int) { x = abs(i % width) }
 func setY(i: Int) { y = abs(i % height) }
 func getCritter() -> Critter { return world[y][x] }
 
-// We have two worlds & save back from our working world at the end of each cycle.
+// We have two worlds & copy the completed world back at the end of each cycle.
 var newWorld = world
 func setCritter(c: Critter)  { newWorld[y][x] = c }
 func saveWorld() { world = newWorld }
@@ -88,21 +90,21 @@ let neighbors = [
     { $0 .. incY .. uponCritter },
     { $0 .. incX .. decY .. drop }
 ]
-let uponneighbors = { $0 .. 9 .. 0 .. loopCnt { $0 .. neighbors[$0.pop(Int)] } }
+let uponNeighbors = { $0 .. 9 .. 0 .. loopCnt { $0 .. neighbors[$0.pop(Int)] } }
 
 // Count living neighbors.
 let critterEq = ((==) as (Critter, Critter) -> Bool) // Using just (==) will make the compiler assume we wanted (Int, Int) -> Bool
 let countLiving = { $0 .. getCritter .. Critter.Alive .. critterEq .. `if`({ $0 .. swap .. 1 .. (+) .. swap }) }
-let countLivingneighbors = { $0 .. 0 .. tick(countLiving) .. uponneighbors }
+let countLivingNeighbors = { $0 .. 0 .. tick(countLiving) .. uponNeighbors }
 
-// Update critters according to the number of living neighbors.
+// Update a critter according to the number of living neighbors.
 let grow = { $0 .. setCritter(.Alive) }
 let die = { $0 .. setCritter(.Dead) }
 let growOrDie = { $0 .. 3 .. (==) .. `if`(grow, `else`: die) }
 let updateCritterState = { $0 .. ddup .. 2 .. (!=) .. `if`(growOrDie, `else`: {$0 .. drop}) }
 
 // Update critters.
-let updateCritter = { $0 .. countLivingneighbors .. updateCritterState }
+let updateCritter = { $0 .. countLivingNeighbors .. updateCritterState }
 let doNothing: Forthwith.Word = { $0 }
 public let updateWorld = { $0 .. tick(doNothing) .. tick(updateCritter) .. uponWorld .. saveWorld }
 
