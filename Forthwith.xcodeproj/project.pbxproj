@@ -32,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB2AC42A1BD1D31D001A40C8 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		EB2CF0E31BCA2149001A40C8 /* LifeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeView.swift; sourceTree = "<group>"; };
 		EB5672931BC86EDD0092817E /* Henceforth.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Henceforth.playground; sourceTree = "<group>"; };
 		EB590AE71BC462500092817E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -134,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				EBAC03901BCB3BA5001A40C8 /* README.md */,
+				EB2AC42A1BD1D31D001A40C8 /* LICENSE.md */,
 				EB5672931BC86EDD0092817E /* Henceforth.playground */,
 				EB590AE61BC462500092817E /* Forthwith */,
 				EB590AEE1BC462500092817E /* Tests */,
