@@ -7,7 +7,7 @@ No? Uh, well, the rest of this pitch was predicated on your giving a rather enth
 
 ## Introduction to Forth
 
-In [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language), functions (known as "words") implicitly pass values to one another via a stack, using syntax resembling [RPN](https://en.wikipedia.org/wiki/Reverse_Polish_notation).
+In [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language)), functions (known as "words") implicitly pass values to one another via a stack, using syntax resembling [RPN](https://en.wikipedia.org/wiki/Reverse_Polish_notation).
 
 ```
 1 2 3 * -
